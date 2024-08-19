@@ -3,8 +3,6 @@ import uuid
 from django.db import models
 from solo.models import SingletonModel
 
-from chats.helpers import get_chat_message_media_dir
-
 
 class Chat(models.Model):
     user_id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
@@ -19,7 +17,7 @@ class ChatMessage(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     message_text = models.TextField(blank=True)
-    image = models.ImageField(blank=True, upload_to=get_chat_message_media_dir)
+    image = models.ImageField(blank=True, upload_to="chat_messages")
 
     class Meta:
         verbose_name = "Chat message"
