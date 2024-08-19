@@ -1,16 +1,14 @@
 import os
 from urllib.parse import urlparse
-import timeout_decorator
+
 import requests
+from django.conf import settings
 from django.core.files.base import ContentFile
 
 from chats.exceptions import BannerAPIUnexpectedError, BannerAPINoPhotosException, BannerAPIInvalidPhotoDataException
 from chats.models import ChatMessage, Chat, ApiTracker
 
-from django.conf import settings
 
-
-@timeout_decorator.timeout(30)
 def send_banner_from_api() -> None:
     """
     Get next banner message from external API and send it to all active chats.
