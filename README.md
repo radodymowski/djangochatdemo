@@ -1,0 +1,1 @@
+Write some instructions about how to launch project and common issues which may occur
